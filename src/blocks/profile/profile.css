@@ -1,0 +1,19 @@
+.profile {
+  margin-top: 40px;
+  margin-bottom: 51px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+  color: #fff;
+}
+
+@media screen and (max-width: 544px) {
+  .profile {
+    margin-top: 41px;
+    margin-bottom: 36px;
+    gap: 27px;
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,0 +1,17 @@
+.card__photo-container {
+  height: 282px;
+  display: flex;
+  justify-content: flex-end;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: ease-out .2s;
+  will-change: transform;
+  background-color: gray;
+}
+
+.card__photo-container:hover {
+  transition: ease-in .1s;
+  opacity: .95;
+  cursor: pointer;
+}
+

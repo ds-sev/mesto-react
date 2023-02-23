@@ -1,0 +1,15 @@
+.likes-container__button {
+  width: 22px;
+  height: 19px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: ease-out .2s;
+  background: center no-repeat url('../../../images/buttons/heart.svg');
+}
+
+.likes-container__button:hover {
+  transition: ease-in .1s;
+  opacity: .5;
+}

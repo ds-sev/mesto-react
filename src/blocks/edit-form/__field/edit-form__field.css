@@ -1,0 +1,15 @@
+.edit-form__field {
+  margin: 0;
+  padding: 2px 0 9px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0, 0.2);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  outline:none;
+}
+
+.edit-form__field::-webkit-input-placeholder {
+  color: #c4c4c4;
+}

@@ -1,0 +1,12 @@
+.edit-form__fields {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+@media screen and (max-width: 544px) {
+  .edit-form__fields {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
