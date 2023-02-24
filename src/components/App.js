@@ -1,39 +1,17 @@
-import logo from './logo.svg';
-import './index.css'
-import logoPath from './images/logo/logo.svg'
+
+import '../index.css'
+import Header from './Header'
+import Main from './Main';
+import Footer from './Footer';
 
 function App() {
   return (
     <div className="App">
       <body className="body">
       <div className="page">
-
-        <header className="header header_position">
-          <img src={logoPath} alt="логотип" className="header__logo" id="start" />
-        </header>
-        <main className="content">
-
-          <section className="profile wrapper">
-            <div className="profile__photo-container">
-              <div className="profile__photo"></div>
-              <div className="profile__photo-hover"></div>
-            </div>
-            <div className="profile__info">
-              <div className="profile__name-container">
-                <h1 className="profile__name">Жак-Ив Кусто</h1>
-                <button className="profile__button-edit button" type="button" aria-label="Редактирование профиля"></button>
-              </div>
-              <p className="profile__about">Исследователь океана</p>
-            </div>
-            <button className="profile__button-add button" type="button" aria-label="Добавить фото"></button>
-          </section>
-
-          <section className="cards wrapper" aria-label="Cards"></section>
-        </main>
-
-        <footer className="footer wrapper">
-          <span className="footer__copyright">&#169; 2023 Дмитрий Литвиненко</span>
-        </footer>
+        <Header />
+        <Main />
+        <Footer />
       </div>
 
       <div className="popup popup-profile-edit" id="profile-edit-popup">
@@ -107,7 +85,7 @@ function App() {
       <div className="popup popup-image-view popup_theme_dark" id="image-view-popup">
         <div className="image-view">
           <figure className="figure">
-            <img className="image-view__item" alt="#" src="#" />
+            <img className="image-view__item" alt="#" src="mesto-react/src/components/App#" />
               <figcaption className="image-view__title"></figcaption>
           </figure>
           <button className="button_type_close button" id="image-view-button-close" type="button" aria-label="Закрыть"></button>
