@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import '../index.css'
 import Header from './Header'
 import Main from './Main'
@@ -58,21 +58,21 @@ function App() {
           <NewAvatarFormContent />
         </PopupWithForm>
       </div>
-      <div className="popup popup-del-card" id="del-card-popup">
-        <div className="popup__container popup__container_small">
-          <form className="edit-form" id="confirm-form" method="post" name="new card" noValidate>
-            <button className="button_type_close button"
-                    id="confirm-form-button-close"
-                    type="button"
-                    aria-label="Закрыть"></button>
-            <h3 className="edit-form__title edit-form__title_small-margin-bottom">Вы уверены?</h3>
-            <button className="edit-form__button-save button_submit button"
-                    id="confirm-button"
-                    type="submit">Да
-            </button>
-          </form>
-        </div>
-      </div>
+      {/*<div className="popup popup-del-card" id="del-card-popup">*/}
+      {/*  <div className="popup__container popup__container_small">*/}
+      {/*    <form className="edit-form" id="confirm-form" method="post" name="new card" noValidate>*/}
+      {/*      <button className="button_type_close button"*/}
+      {/*              id="confirm-form-button-close"*/}
+      {/*              type="button"*/}
+      {/*              aria-label="Закрыть"></button>*/}
+      {/*      <h3 className="edit-form__title edit-form__title_small-margin-bottom">Вы уверены?</h3>*/}
+      {/*      <button className="edit-form__button-save button_submit button"*/}
+      {/*              id="confirm-button"*/}
+      {/*              type="submit">Да*/}
+      {/*      </button>*/}
+      {/*    </form>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
       <ImagePopup />
       {/*<template id="card">*/}
       {/*  <div className="card">*/}
