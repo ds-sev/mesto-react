@@ -1,7 +1,6 @@
 function PopupWithForm({ title, name, isOpen, children, onClose }) {
   return isOpen
-    ?
-    (<div className={`popup popup-${name} popup_opened`}>
+    ? (<div className={`popup popup-${name} popup_opened`}>
       <div className="popup__container">
         <form className="edit-form"
               id="profile-edit-form"
@@ -23,8 +22,7 @@ function PopupWithForm({ title, name, isOpen, children, onClose }) {
         </form>
       </div>
     </div>)
-    :
-    (<></>)
+    : (<></>)
 }
 
 export default PopupWithForm

@@ -1,5 +1,4 @@
 function Card(props) {
-
   function handleClick() {
     props.onCardClick(props.link)
   }

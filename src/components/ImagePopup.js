@@ -1,5 +1,4 @@
 function ImagePopup({ cardLink, onClose, isOpen }) {
-
   return isOpen
     ? (<div className="popup popup-image-view popup_theme_dark popup_opened"
             id="image-view-popup">

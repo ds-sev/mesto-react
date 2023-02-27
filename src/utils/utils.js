@@ -8,7 +8,6 @@ export const profileEditButton = document.querySelector('.profile__button-edit')
   newCardForm = popupNewCard.querySelector('#add-card-form'),
   avatarUpdateButton = document.querySelector('.profile__photo-container'),
   avatarUpdateForm = document.querySelector('#update-avatar-form')
-
 /** SELECTORS */
 export const configValidation = {
   formSelector: '.edit-form',
@@ -16,7 +15,7 @@ export const configValidation = {
   submitButtonSelector: '.button_submit',
   inactiveButtonClass: 'button_inactive',
   inputErrorClass: 'edit-form__field_type_error',
-  errorClass: 'edit-form__field_error_active',
+  errorClass: 'edit-form__field_error_active'
 }
 export const
   cardsSection = '.cards',
