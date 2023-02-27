@@ -15,6 +15,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
         setUserDescription(userData.about)
         setUserAvatar(userData.avatar)
         setCards(cardsData)
+        cards.forEach(card => console.log(card._id))
       })
       .catch(err => console.log(err))
   }, [])
@@ -48,6 +49,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
           <Card title={card.name}
                 likes={card.likes.length}
                 link={card.link}
+                key={card._id}
           />
         )}
       </section>
