@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react'
 import api from '../utils/api'
+import Card from './Card'
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
   const [userName, setUserName] = useState('')
   const [userDescription, setUserDescription] = useState('')
   const [userAvatar, setUserAvatar] = useState('')
+  const [cards, setCards] = useState([])
+
   useEffect(() => {
-    api.getUserInfo().then(userData => {
-      setUserName(userData.name)
-      setUserDescription(userData.about)
-      setUserAvatar(userData.avatar)
-    })
-  })
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([userData, cardsData]) => {
+        setUserName(userData.name)
+        setUserDescription(userData.about)
+        setUserAvatar(userData.avatar)
+        setCards(cardsData)
+      })
+      .catch(err => console.log(err))
+  }, [])
+
   return (
     <main className="content">
       <section className="profile wrapper">
@@ -36,7 +43,14 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
                 type="button"
                 aria-label="Добавить фото"></button>
       </section>
-      <section className="cards wrapper" aria-label="Cards"></section>
+      <section className="cards wrapper" aria-label="Cards">
+        {cards.map(card =>
+          <Card title={card.name}
+                likes={card.likes.length}
+                link={card.link}
+          />
+        )}
+      </section>
     </main>
   )
 }
