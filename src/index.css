@@ -75,3 +75,6 @@
 @import url('./blocks/image-view/__item/image-view__item.css');
 @import url('./blocks/image-view/__title/image-view__title.css');
 
+html {
+  background-color: black;
+}

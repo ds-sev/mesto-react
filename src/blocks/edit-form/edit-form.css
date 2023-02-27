@@ -6,6 +6,10 @@
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+
+
+  height: fit-content;
+
 }
 
 @media screen and (max-width: 544px) {
