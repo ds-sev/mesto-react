@@ -1,7 +1,7 @@
 # mesto-react
 
-![logo_white](src/images/logo/logo_black.png)![logo_black](src/images/logo/logo.svg)
-<img src="https://github.com/ds-sev/mesto/blob/main/src/images/Снимок%20экрана%202023-02-18%20в%2009.54.13.png" width="280px" align="right">
+![logo_white](src/images/logo/logo_black.png)&ensp;<img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" width="40px">&ensp;![logo_black](src/images/logo/logo.svg)
+<img src="https://github.com/ds-sev/mesto-react/blob/main/src/images/mesto-react_preview.png" width="380px" align="right">
 
 
 [Посмотреть готовый проект](https://ds-sev.github.io/mesto-react/)
