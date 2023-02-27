@@ -12,7 +12,7 @@ function PopupWithForm({ title, name, isOpen, children, onClose }) {
                   id="profile-edit-form-button-close"
                   type="button"
                   aria-label="Закрыть"
-          onClick={onClose}/>
+                  onClick={onClose} />
           <h3 className="edit-form__title">{title}</h3>
           <fieldset className="edit-form__fields">
             {children}

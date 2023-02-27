@@ -1,8 +1,14 @@
 function Card(props) {
+
+  function handleClick() {
+    props.onCardClick(props.link)
+  }
   return (
     <div className="card">
       <div className="card__photo-container"
-           id="image-card" style={{
+           id="image-card"
+           onClick={handleClick}
+           style={{
         backgroundPosition: 'center',
         backgroundImage: `url(${props.link})`,
         backgroundSize: 'cover'

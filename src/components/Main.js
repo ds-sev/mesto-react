@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import api from '../utils/api'
 import Card from './Card'
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   const [userName, setUserName] = useState('')
   const [userDescription, setUserDescription] = useState('')
   const [userAvatar, setUserAvatar] = useState('')
@@ -15,7 +15,6 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
         setUserDescription(userData.about)
         setUserAvatar(userData.avatar)
         setCards(cardsData)
-        cards.forEach(card => console.log(card._id))
       })
       .catch(err => console.log(err))
   }, [])
@@ -50,7 +49,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
                 likes={card.likes.length}
                 link={card.link}
                 key={card._id}
-          />
+                onCardClick={onCardClick} />
         )}
       </section>
     </main>
