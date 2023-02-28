@@ -10,26 +10,26 @@ import NewCardFormContent from './NewCardFormContent'
 import NewAvatarFormContent from './NewAvatarFormContent'
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false)
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false)
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false)
-  const [isImagePopupOpen, setImagePopupOpen] = useState(false)
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
 
   const [selectedCard, setSelectedCard] = useState('')
 
-  const handleEditAvatarClick = () => setEditAvatarPopupOpen(true)
-  const handleEditProfileClick = () => setEditProfilePopupOpen(true)
-  const handleAddPlaceClick = () => setAddPlacePopupOpen(true)
+  const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true)
+  const handleEditProfileClick = () => setIsEditProfilePopupOpen(true)
+  const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true)
   const handleCardClick = (cardLink) => {
     setSelectedCard(cardLink)
-    setImagePopupOpen(true)
+    setIsImagePopupOpen(true)
   }
 
   function closeAllPopups() {
-    setEditAvatarPopupOpen(false)
-    setEditProfilePopupOpen(false)
-    setAddPlacePopupOpen(false)
-    setImagePopupOpen(false)
+    setIsEditAvatarPopupOpen(false)
+    setIsEditProfilePopupOpen(false)
+    setIsAddPlacePopupOpen(false)
+    setIsImagePopupOpen(false)
     setSelectedCard('')
   }
 
