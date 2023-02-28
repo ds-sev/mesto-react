@@ -15,13 +15,13 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
 
-  const [selectedCard, setSelectedCard] = useState('')
+  const [selectedCard, setSelectedCard] = useState({name: '', link: ''})
 
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true)
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true)
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true)
-  const handleCardClick = (cardLink) => {
-    setSelectedCard(cardLink)
+  const handleCardClick = (card) => {
+    setSelectedCard(card)
     setIsImagePopupOpen(true)
   }
 
@@ -30,11 +30,11 @@ function App() {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsImagePopupOpen(false)
-    setSelectedCard('')
+    setSelectedCard({name: '', link: ''})
   }
 
   return (
-    <div className="App, body">
+    <div className="body">
       <div className="page">
         <Header />
 
@@ -52,6 +52,7 @@ function App() {
           name="edit-form"
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          buttonText="Сохранить"
         >
           <ProfileEditFormContent />
         </PopupWithForm>
@@ -61,6 +62,7 @@ function App() {
           name="new-card"
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
+          buttonText="Добавить"
         >
           <NewCardFormContent />
         </PopupWithForm>
@@ -70,13 +72,14 @@ function App() {
           name="update-avatar"
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          buttonText="Сохранить"
         >
           <NewAvatarFormContent />
         </PopupWithForm>
 
       </div>
 
-      <ImagePopup cardLink={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
+      <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
 
     </div>
   )

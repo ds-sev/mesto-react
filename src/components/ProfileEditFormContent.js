@@ -4,7 +4,6 @@ function ProfileEditFormContent() {
       <label>
         <input
           type="text"
-          id="name-input"
           className="edit-form__field edit-form__field_get_name"
           placeholder="Имя"
           name="name"
@@ -18,7 +17,6 @@ function ProfileEditFormContent() {
         <input
           type="text"
           className="edit-form__field edit-form__field_get_job"
-          id="job-input"
           placeholder="Деятельность"
           name="job"
           minLength="2"

@@ -1,17 +1,10 @@
-function PopupWithForm({ title, name, isOpen, children, onClose }) {
-  return isOpen ? (
-    <div className={`popup popup-${name} popup_opened`}>
+function PopupWithForm({ title, name, isOpen, children, onClose, buttonText }) {
+  return (
+    <div className={`popup popup-${name} ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container">
-        <form
-          className="edit-form"
-          id="profile-edit-form"
-          method="post"
-          name={`${name}`}
-          noValidate
-        >
+        <form className="edit-form" method="post" name={`${name}`}>
           <button
             className="button_type_close button"
-            id="profile-edit-form-button-close"
             type="button"
             aria-label="Закрыть"
             onClick={onClose}
@@ -20,14 +13,12 @@ function PopupWithForm({ title, name, isOpen, children, onClose }) {
           <fieldset className="edit-form__fields">
             {children}
             <button className="edit-form__button-save button_submit button" type="submit">
-              Сохранить
+              {buttonText}
             </button>
           </fieldset>
         </form>
       </div>
     </div>
-  ) : (
-    <></>
   )
 }
 

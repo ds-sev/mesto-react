@@ -1,23 +1,20 @@
-function ImagePopup({ cardLink, onClose, isOpen }) {
-  return isOpen ? (
-    <div className="popup popup-image-view popup_theme_dark popup_opened" id="image-view-popup">
+function ImagePopup({ card, onClose }) {
+  return (
+    <div className={`popup popup-image-view popup_theme_dark ${card.link ? "popup_opened" : ""}`}>
       <div className="image-view">
         <figure className="figure">
-          <img className="image-view__item" alt="#" src={cardLink} />
-          <figcaption className="image-view__title" />
+          <img className="image-view__item" alt={card.title} src={card.link} />
+          <figcaption className="image-view__title">{card.title}</figcaption>
         </figure>
         <button
           className="button_type_close button"
-          id="image-view-button-close"
           type="button"
           aria-label="Закрыть"
           onClick={onClose}
         />
       </div>
     </div>
-  ) : (
-    <></>
   )
 }
 
-export default ImagePopup;
+export default ImagePopup

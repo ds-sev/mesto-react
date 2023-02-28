@@ -4,7 +4,6 @@ function NewCardFormContent() {
       <label>
         <input
           type="text"
-          id="place-input"
           className="edit-form__field edit-form__field_get_place-name"
           placeholder="Название"
           name="name"
@@ -17,7 +16,6 @@ function NewCardFormContent() {
       <label>
         <input
           type="url"
-          id="link-input"
           className="edit-form__field edit-form__field_get_link"
           placeholder="Ссылка на картинку"
           name="link"
