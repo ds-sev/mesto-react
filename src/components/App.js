@@ -37,12 +37,16 @@ function App() {
     <div className="App, body">
       <div className="page">
         <Header />
-        <Main onEditAvatar={handleEditAvatarClick}
-              onAddPlace={handleAddPlaceClick}
-              onEditProfile={handleEditProfileClick}
-              onCardClick={handleCardClick}
+
+        <Main
+          onEditAvatar={handleEditAvatarClick}
+          onAddPlace={handleAddPlaceClick}
+          onEditProfile={handleEditProfileClick}
+          onCardClick={handleCardClick}
         />
+
         <Footer />
+
         <PopupWithForm
           title="Редактировать профиль"
           name="edit-form"
@@ -51,6 +55,7 @@ function App() {
         >
           <ProfileEditFormContent />
         </PopupWithForm>
+
         <PopupWithForm
           title="Новое место"
           name="new-card"
@@ -59,6 +64,7 @@ function App() {
         >
           <NewCardFormContent />
         </PopupWithForm>
+
         <PopupWithForm
           title="Обновить аватар"
           name="update-avatar"
@@ -67,19 +73,13 @@ function App() {
         >
           <NewAvatarFormContent />
         </PopupWithForm>
+
       </div>
-      <ImagePopup
-        cardLink={selectedCard}
-        isOpen={isImagePopupOpen}
-        onClose={closeAllPopups}
-      />
+
+      <ImagePopup cardLink={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
+
     </div>
   )
 }
 
 export default App
-
-
-
-
-
