@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
 Promise.all([api.getUserInfo()])
   .then(([userData]) => {
-setCurrentUser(userData.name)
+setCurrentUser(userData)
   })
   .catch((err) => console.log(err))
 

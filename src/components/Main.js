@@ -1,34 +1,38 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import api from '../utils/api'
 import Card from './Card'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
+
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [userName, setUserName] = useState('')
-  const [userDescription, setUserDescription] = useState('')
-  const [userAvatar, setUserAvatar] = useState('')
   const [cards, setCards] = useState([])
 
+
+
+  const currentUser = useContext(CurrentUserContext)
+
+
+
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
-        setUserName(userData.name)
-        setUserDescription(userData.about)
-        setUserAvatar(userData.avatar)
+    Promise.all([api.getInitialCards()])
+      .then(([cardsData]) => {
+
         setCards(cardsData)
       })
       .catch((err) => console.log(err))
   }, [])
 
   return (
+
     <main className="content">
       <section className="profile wrapper">
         <div className="profile__photo-container" onClick={onEditAvatar}>
-          <div className="profile__photo" style={{ backgroundImage: `url(${userAvatar})` }} />
+          <div className="profile__photo" style={{ backgroundImage: `url(${currentUser.avatar})` }} />
           <div className="profile__photo-hover" />
         </div>
         <div className="profile__info">
           <div className="profile__name-container">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{currentUser.name}</h1>
             <button
               className="profile__button-edit button"
               onClick={onEditProfile}
@@ -36,7 +40,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
               aria-label="Редактирование профиля"
             ></button>
           </div>
-          <p className="profile__about">{userDescription}</p>
+          <p className="profile__about">{currentUser.about}</p>
         </div>
         <button
           className="profile__button-add button"
