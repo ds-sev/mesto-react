@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import '../index.css'
 import Header from './Header'
 import Main from './Main'
@@ -8,12 +8,31 @@ import PopupWithForm from './PopupWithForm'
 import ProfileEditFormContent from './ProfileEditFormContent'
 import NewCardFormContent from './NewCardFormContent'
 import NewAvatarFormContent from './NewAvatarFormContent'
+import api from '../utils/api'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
+
+
+
+  const [currentUser, setCurrentUser] = useState('')
+
+  useEffect(() => {
+Promise.all([api.getUserInfo()])
+  .then(([userData]) => {
+setCurrentUser(userData.name)
+  })
+  .catch((err) => console.log(err))
+
+  }, [])
+
+
+
+
 
   const [selectedCard, setSelectedCard] = useState({name: '', link: ''})
 
@@ -34,6 +53,7 @@ function App() {
   }
 
   return (
+    <CurrentUserContext.Provider  value={currentUser}>
     <div className="body">
       <div className="page">
         <Header />
@@ -82,6 +102,7 @@ function App() {
       <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
 
     </div>
+    </CurrentUserContext.Provider>
   )
 }
 
