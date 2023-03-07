@@ -1,8 +1,8 @@
-.card__button-like_active {
+.likes-container__button_active {
   opacity: 1;
   background: no-repeat url('../../../../images/buttons/heart_active.svg');
 }
 
-.card__button-like_active:hover {
+.likes-container__button_active:hover {
   opacity: 1;
 }

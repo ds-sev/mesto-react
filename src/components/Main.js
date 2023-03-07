@@ -1,20 +1,10 @@
-import { useContext, useEffect, useState } from 'react'
-import api from '../utils/api'
+import { useContext } from 'react'
 import Card from './Card'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [cards, setCards] = useState([])
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, cards }) {
 
   const currentUser = useContext(CurrentUserContext)
-
-  useEffect(() => {
-    Promise.all([api.getInitialCards()])
-      .then(([cardsData]) => {
-        setCards(cardsData)
-      })
-      .catch((err) => console.log(err))
-  }, [])
 
   return (
     <main className="content">
@@ -52,8 +42,10 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
             likes={card.likes}
             link={card.link}
             key={card._id}
+            id={card._id}
             owner={card.owner}
             onCardClick={onCardClick}
+            onCardLike={onCardLike}
           />
         ))}
       </section>

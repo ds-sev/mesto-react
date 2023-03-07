@@ -4,13 +4,19 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 function Card(card) {
   const currentUser = useContext(CurrentUserContext)
   const isOwn = card.owner._id === currentUser._id
-  const isLiked = card.likes.some((i) => i._id === currentUser._id)
-
-  const cardLikeButton = `likes-container__button ${isLiked && 'likes-container__button_active'}`
+  const isLiked = card.likes.some((user) => user._id === currentUser._id)
+  const cardLikeButtonClassName = (`likes-container__button ${isLiked && 'likes-container__button_active'}`)
 
   function handleClick() {
     card.onCardClick(card)
   }
+
+  function handleLikeClick() {
+    card.onCardLike(card)
+
+
+  }
+
 
   return (
     <div className="card">
@@ -30,7 +36,8 @@ function Card(card) {
         <h2 className="card__title">{card.title}</h2>
         <div className="likes-container">
           <button
-            className="cardLikeButton likes-container__button"
+            className={cardLikeButtonClassName}
+            onClick={handleLikeClick}
             type="button"
             aria-label="Нравится"
           />
@@ -40,5 +47,7 @@ function Card(card) {
     </div>
   )
 }
+
+
 
 export default Card
