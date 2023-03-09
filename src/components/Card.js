@@ -35,9 +35,10 @@ function Card(card) {
       {isOwn && (
         <button
           className="card__button-delete"
-onClick={handleDeleteClick}
-                type="button"
-                aria-label="Удалить карточку" />
+          onClick={handleDeleteClick}
+          type="button"
+          aria-label="Удалить карточку"
+        />
       )}
       <div className="card__info">
         <h2 className="card__title">{card.title}</h2>
