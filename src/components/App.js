@@ -10,6 +10,7 @@ import NewCardFormContent from './NewCardFormContent'
 import NewAvatarFormContent from './NewAvatarFormContent'
 import api from '../utils/api'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import card from './Card'
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -48,14 +49,23 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user._id === currentUser._id)
-    api.changeLikeCardStatus(card.id, !isLiked)
+    api
+      .changeLikeCardStatus(card.id, !isLiked)
       .then((newCard) => {
         setCards((state) =>
-          state.map((currentCard) => currentCard._id === card.id
+          state.map((currentCard) => (currentCard._id === card.id
             ? newCard
-            : currentCard),
+            : currentCard)),
         )
-      }).catch((err) => console.log(err))
+      })
+      .catch((err) => console.log(err))
+  }
+
+  function handleCardDelete(targetCard) {
+    api
+      .deleteCard(targetCard.id)
+      .then(setCards(cards.filter((card) => card._id !== targetCard.id)))
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -69,6 +79,7 @@ function App() {
             onEditProfile={handleEditProfileClick}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
             cards={cards}
           />
           <Footer />

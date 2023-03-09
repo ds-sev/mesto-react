@@ -5,7 +5,9 @@ function Card(card) {
   const currentUser = useContext(CurrentUserContext)
   const isOwn = card.owner._id === currentUser._id
   const isLiked = card.likes.some((user) => user._id === currentUser._id)
-  const cardLikeButtonClassName = (`likes-container__button ${isLiked && 'likes-container__button_active'}`)
+  const cardLikeButtonClassName = `likes-container__button ${
+    isLiked && 'likes-container__button_active'
+  }`
 
   function handleClick() {
     card.onCardClick(card)
@@ -13,10 +15,11 @@ function Card(card) {
 
   function handleLikeClick() {
     card.onCardLike(card)
-
-
   }
 
+  function handleDeleteClick() {
+    card.onCardDetete(card)
+  }
 
   return (
     <div className="card">
@@ -30,7 +33,11 @@ function Card(card) {
         }}
       ></div>
       {isOwn && (
-        <button className="card__button-delete" type="button" aria-label="Удалить карточку" />
+        <button
+          className="card__button-delete"
+onClick={handleDeleteClick}
+                type="button"
+                aria-label="Удалить карточку" />
       )}
       <div className="card__info">
         <h2 className="card__title">{card.title}</h2>
@@ -47,7 +54,5 @@ function Card(card) {
     </div>
   )
 }
-
-
 
 export default Card

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import Card from './Card'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, cards }) {
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, cards }) {
 
   const currentUser = useContext(CurrentUserContext)
 
@@ -46,6 +46,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
             owner={card.owner}
             onCardClick={onCardClick}
             onCardLike={onCardLike}
+            onCardDetete={onCardDelete}
           />
         ))}
       </section>
@@ -54,3 +55,5 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
 }
 
 export default Main
+
+
