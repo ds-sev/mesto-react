@@ -1,6 +1,14 @@
-function ProfileEditFormContent() {
+import PopupWithForm from './PopupWithForm'
+
+function EditProfilePopup({isOpen, onClose }) {
   return (
-    <>
+    <PopupWithForm
+      title="Редактировать профиль"
+      name="edit-form"
+      isOpen={isOpen}
+      onClose={onClose}
+      buttonText="Сохранить"
+    >
       <label>
         <input
           type="text"
@@ -25,8 +33,8 @@ function ProfileEditFormContent() {
         />
         <span className="job-input-error edit-form__field-error"></span>
       </label>
-    </>
+    </PopupWithForm>
   )
 }
 
-export default ProfileEditFormContent
+export default EditProfilePopup

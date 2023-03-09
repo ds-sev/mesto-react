@@ -5,12 +5,12 @@ import Main from './Main'
 import Footer from './Footer'
 import ImagePopup from './ImagePopup'
 import PopupWithForm from './PopupWithForm'
-import ProfileEditFormContent from './ProfileEditFormContent'
 import NewCardFormContent from './NewCardFormContent'
 import NewAvatarFormContent from './NewAvatarFormContent'
 import api from '../utils/api'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import card from './Card'
+import EditProfilePopup from './EditProfilePopup'
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -83,15 +83,7 @@ function App() {
             cards={cards}
           />
           <Footer />
-          <PopupWithForm
-            title="Редактировать профиль"
-            name="edit-form"
-            isOpen={isEditProfilePopupOpen}
-            onClose={closeAllPopups}
-            buttonText="Сохранить"
-          >
-            <ProfileEditFormContent />
-          </PopupWithForm>
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
           <PopupWithForm
             title="Новое место"
             name="new-card"
