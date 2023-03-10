@@ -24,7 +24,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: newData.name,
-        about: newData.job,
+        about: newData.about,
       })
     }).then(this._checkResponse)
   }
