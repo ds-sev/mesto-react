@@ -6,7 +6,7 @@ import Footer from './Footer'
 import ImagePopup from './ImagePopup'
 import PopupWithForm from './PopupWithForm'
 import NewCardFormContent from './NewCardFormContent'
-import NewAvatarFormContent from './NewAvatarFormContent'
+import EditAvatarPopup from './EditAvatarPopup'
 import api from '../utils/api'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import card from './Card'
@@ -103,16 +103,12 @@ function App() {
             buttonText="Добавить"
           >
             <NewCardFormContent />
+
           </PopupWithForm>
-          <PopupWithForm
-            title="Обновить аватар"
-            name="update-avatar"
-            isOpen={isEditAvatarPopupOpen}
-            onClose={closeAllPopups}
-            buttonText="Сохранить"
-          >
-            <NewAvatarFormContent />
-          </PopupWithForm>
+            <EditAvatarPopup
+              isOpen={isEditAvatarPopupOpen}
+              onClose={closeAllPopups}
+            />
         </div>
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
       </div>
