@@ -9,7 +9,6 @@ import NewCardFormContent from './NewCardFormContent'
 import EditAvatarPopup from './EditAvatarPopup'
 import api from '../utils/api'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
-import card from './Card'
 import EditProfilePopup from './EditProfilePopup'
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
-  const [currentUser, setCurrentUser] = useState('')
+  const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -69,8 +68,21 @@ function App() {
   }
 
   function handleUpdateUser(userData) {
-    api.setUserInfo(userData)
-      .then(setCurrentUser(userData))
+    api
+      .setUserInfo(userData)
+      .then((res) => {
+        setCurrentUser(res)
+      })
+      .then(closeAllPopups)
+      .catch((err) => console.log(err))
+  }
+
+  function handleUpdateAvatar(data) {
+    api
+      .setUserAvatar(data.avatar.value)
+      .then((res) => {
+        setCurrentUser(res)
+      })
       .then(closeAllPopups)
       .catch((err) => console.log(err))
   }
@@ -103,12 +115,12 @@ function App() {
             buttonText="Добавить"
           >
             <NewCardFormContent />
-
           </PopupWithForm>
-            <EditAvatarPopup
-              isOpen={isEditAvatarPopupOpen}
-              onClose={closeAllPopups}
-            />
+          <EditAvatarPopup
+            isOpen={isEditAvatarPopupOpen}
+            onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
+          />
         </div>
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
       </div>

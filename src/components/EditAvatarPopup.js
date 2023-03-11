@@ -1,6 +1,16 @@
 import PopupWithForm from './PopupWithForm'
+import { useRef } from 'react'
 
-function EditAvatarPopup({isOpen, onClose}) {
+function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+  const newAvatarRef = useRef()
+
+  function handleSubmit(evt) {
+    evt.preventDefault()
+    onUpdateAvatar({
+      avatar: newAvatarRef.current,
+    })
+  }
+
   return (
     <PopupWithForm
       title="Обновить аватар"
@@ -8,9 +18,11 @@ function EditAvatarPopup({isOpen, onClose}) {
       buttonText="Сохранить"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
       <label>
         <input
+          ref={newAvatarRef}
           type="url"
           className="edit-form__field edit-form__field_get_link"
           placeholder="Ссылка на изображение"
