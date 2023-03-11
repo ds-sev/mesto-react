@@ -5,7 +5,7 @@ import Main from './Main'
 import Footer from './Footer'
 import ImagePopup from './ImagePopup'
 import PopupWithForm from './PopupWithForm'
-import NewCardFormContent from './NewCardFormContent'
+import AddPlacePopup from './AddPlacePopup'
 import EditAvatarPopup from './EditAvatarPopup'
 import api from '../utils/api'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
@@ -87,6 +87,16 @@ function App() {
       .catch((err) => console.log(err))
   }
 
+  function handleAddPlaceSubmit(newCardData) {
+    api
+      .postNewCard({ name: newCardData.place.value, link: newCardData.url.value })
+      .then((res) => {
+        setCards([res, ...cards])
+      })
+      .then(closeAllPopups)
+      .catch((err) => console.log(err))
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
@@ -107,15 +117,11 @@ function App() {
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
           />
-          <PopupWithForm
-            title="Новое место"
-            name="new-card"
+          <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
-            buttonText="Добавить"
-          >
-            <NewCardFormContent />
-          </PopupWithForm>
+            onAddPlace={handleAddPlaceSubmit}
+          />
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
