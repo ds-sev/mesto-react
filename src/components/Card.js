@@ -17,8 +17,8 @@ function Card(card) {
     card.onCardLike(card)
   }
 
-  function handleDeleteClick() {
-    card.onCardDetete(card)
+  function handleDeleteClickConfirm() {
+    card.onCardDeteteConfirm(card)
   }
 
   return (
@@ -35,7 +35,7 @@ function Card(card) {
       {isOwn && (
         <button
           className="card__button-delete"
-          onClick={handleDeleteClick}
+          onClick={handleDeleteClickConfirm}
           type="button"
           aria-label="Удалить карточку"
         />

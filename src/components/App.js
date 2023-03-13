@@ -4,12 +4,12 @@ import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 import ImagePopup from './ImagePopup'
-import PopupWithForm from './PopupWithForm'
 import AddPlacePopup from './AddPlacePopup'
 import EditAvatarPopup from './EditAvatarPopup'
 import api from '../utils/api'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import EditProfilePopup from './EditProfilePopup'
+import CardDeleteConfirmationPopup from './CardDeleteConfirmationPopup'
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -17,6 +17,12 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
+  const [selectedCard, setSelectedCard] = useState({ name: '', link: '' })
+  const [cards, setCards] = useState([])
+  const [isCardDeleteConfirmationPopupOpen, setIsCardDeleteConfirmationPopupOpen] = useState(false)
+  const [cardToDelete, setCardToDelete] = useState({})
+
+  const [deleteCardConfirmationBtnText, setDeleteCardConfirmationBtnText] = useState('Да')
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -27,9 +33,6 @@ function App() {
       .catch((err) => console.log(err))
   }, [])
 
-  const [selectedCard, setSelectedCard] = useState({ name: '', link: '' })
-  const [cards, setCards] = useState([])
-
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true)
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true)
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true)
@@ -37,12 +40,18 @@ function App() {
     setSelectedCard(card)
     setIsImagePopupOpen(true)
   }
+  const handleCardDeleteConfirmationClick = (targetCard) => {
+    setIsCardDeleteConfirmationPopupOpen(true)
+    setCardToDelete(targetCard)
+  }
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false)
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsImagePopupOpen(false)
+    setIsEditProfilePopupOpen(false)
+    setIsCardDeleteConfirmationPopupOpen(false)
     setSelectedCard({ name: '', link: '' })
   }
 
@@ -63,7 +72,9 @@ function App() {
   function handleCardDelete(targetCard) {
     api
       .deleteCard(targetCard.id)
-      .then(setCards(cards.filter((card) => card._id !== targetCard.id)))
+      .then(() =>setCards(cards.filter((card) => card._id !== targetCard.id)))
+      .then(closeAllPopups)
+      .then(() => setDeleteCardConfirmationBtnText('Удаляем...'))
       .catch((err) => console.log(err))
   }
 
@@ -108,7 +119,7 @@ function App() {
             onEditProfile={handleEditProfileClick}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardDeleteConfirm={handleCardDeleteConfirmationClick}
             cards={cards}
           />
           <Footer />
@@ -126,6 +137,14 @@ function App() {
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
+          />
+          <CardDeleteConfirmationPopup
+            isOpen={isCardDeleteConfirmationPopupOpen}
+            onClose={closeAllPopups}
+            onCardDelete={handleCardDelete}
+            onCardDeleteComfirmSubmit={handleCardDeleteConfirmationClick}
+            cardToDelete={cardToDelete}
+            buttonText={deleteCardConfirmationBtnText}
           />
         </div>
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
