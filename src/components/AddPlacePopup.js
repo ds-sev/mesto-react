@@ -1,7 +1,7 @@
 import PopupWithForm from './PopupWithForm'
 import { useRef } from 'react'
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
   const newPlaceRef = useRef()
   const newPlaceUrlRef = useRef()
 
@@ -21,7 +21,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText="Добавить"
+      buttonText={buttonText}
     >
       <label>
         <input
