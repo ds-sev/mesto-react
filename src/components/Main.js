@@ -6,6 +6,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
 
   const currentUser = useContext(CurrentUserContext)
 
+
   return (
     <main className="content">
       <section className="profile wrapper">

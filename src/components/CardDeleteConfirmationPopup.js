@@ -6,6 +6,13 @@ function CardDeleteConfirmationPopup({ isOpen, onClose, onCardDelete, cardToDele
     onCardDelete(cardToDelete)
   }
 
+  function handleEscKeyClose(evt) {
+    if (evt.code === 'Escape') {
+      document.addEventListener('keydown', handleEscKeyClose)
+      onClose()
+    }
+  }
+
   return (
     <PopupWithForm
       title="Вы уверены?"
@@ -14,6 +21,7 @@ function CardDeleteConfirmationPopup({ isOpen, onClose, onCardDelete, cardToDele
       onClose={onClose}
       onSubmit={handleSubmit}
       cardToDelete={cardToDelete}
+      onKeyDown={handleEscKeyClose}
     />
   )
 }
