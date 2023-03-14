@@ -1,16 +1,19 @@
 import PopupWithForm from './PopupWithForm'
-import { useRef } from 'react'
+import { useEffect } from 'react'
+import useValidation from '../hooks/useValidation'
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
-  const newPlaceRef = useRef()
-  const newPlaceUrlRef = useRef()
+  const { values, errors, onChange, resetValidation } = useValidation()
+
+  useEffect(() => {
+    resetValidation()
+  }, [isOpen])
 
   function handleSubmit(evt) {
     evt.preventDefault()
-    console.log()
     onAddPlace({
-      place: newPlaceRef.current,
-      url: newPlaceUrlRef.current,
+      place: values.current,
+      url: values.current,
     })
   }
 
@@ -25,7 +28,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
     >
       <label>
         <input
-          ref={newPlaceRef}
+          value={values.name || ''}
+          onChange={onChange}
           type="text"
           className="edit-form__field edit-form__field_get_place-name"
           placeholder="Название"
@@ -34,18 +38,19 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
           maxLength="30"
           required
         />
-        <span className="edit-form__field-error place-input-error"></span>
+        <span className="edit-form__field-error place-input-error">{errors.name}</span>
       </label>
       <label>
         <input
-          ref={newPlaceUrlRef}
+          value={values.link || ''}
+          onChange={onChange}
           type="url"
           className="edit-form__field edit-form__field_get_link"
           placeholder="Ссылка на картинку"
           name="link"
           required
         />
-        <span className="edit-form__field-error link-input-error"></span>
+        <span className="edit-form__field-error link-input-error">{errors.link}</span>
       </label>
     </PopupWithForm>
   )

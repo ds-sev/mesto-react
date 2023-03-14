@@ -1,32 +1,23 @@
 import PopupWithForm from './PopupWithForm'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import useValidation from '../hooks/useValidation'
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
   const currentUser = useContext(CurrentUserContext)
-
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
+  const { values, errors, onChange, resetValidation } = useValidation()
 
   useEffect(() => {
-    setName(`${currentUser.name}`)
-    setDescription(`${currentUser.about}`)
-  }, [currentUser])
-
-  function handleNameChange(evt) {
-    setName(evt.target.value)
-  }
-
-  function handleDescriptionChange(evt) {
-    setDescription(evt.currentTarget.value)
-  }
+    resetValidation(currentUser)
+  }, [currentUser, isOpen])
 
   function handleSubmit(evt) {
     evt.preventDefault()
     onUpdateUser({
-      name,
-      about: description,
+      name: values.name,
+      about: values.about,
     })
+    resetValidation()
   }
 
   return (
@@ -40,8 +31,8 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
     >
       <label>
         <input
-          value={name}
-          onChange={handleNameChange}
+          value={values.name || ''}
+          onChange={onChange}
           type="text"
           className="edit-form__field"
           placeholder="Имя"
@@ -50,21 +41,21 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
           maxLength="40"
           required
         />
-        <span className="name-input-error edit-form__field-error"></span>
+        <span className="name-input-error edit-form__field-error">{errors.name || ''}</span>
       </label>
       <label>
         <input
-          value={description}
-          onChange={handleDescriptionChange}
+          value={values.about || ''}
+          onChange={onChange}
           type="text"
           className="edit-form__field"
           placeholder="Деятельность"
-          name="job"
+          name="about"
           minLength="2"
           maxLength="200"
           required
         />
-        <span className="job-input-error edit-form__field-error"></span>
+        <span className="job-input-error edit-form__field-error">{errors.about || ''}</span>
       </label>
     </PopupWithForm>
   )
