@@ -1,12 +1,6 @@
 import { useEffect } from 'react'
 
 function ImagePopup({ card, isOpen, onClose }) {
-  function onOverlayClick(evt) {
-    if (evt.target === evt.currentTarget) {
-      onClose()
-    }
-  }
-
   useEffect(() => {
     function handleEscKeyClose(evt) {
       if (evt.code === 'Escape') {
@@ -19,6 +13,12 @@ function ImagePopup({ card, isOpen, onClose }) {
     }
     return () => document.removeEventListener('keydown', handleEscKeyClose)
   })
+
+  function onOverlayClick(evt) {
+    if (evt.target === evt.currentTarget) {
+      onClose()
+    }
+  }
 
   return (
     <div

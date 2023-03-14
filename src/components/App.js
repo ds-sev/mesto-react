@@ -35,20 +35,6 @@ function App() {
       .catch((err) => console.log(err))
   }, [])
 
-  // useEffect(() => {
-  //   console.log('useeffect')
-  //   function handleEscKeyClose(evt) {
-  //     console.log(evt)
-  //     if (evt.code === 'Escape') {
-  //       closeAllPopups()
-  //     }
-  //   }
-  //   window.addEventListener('keydown', handleEscKeyClose)
-  //   return () => window.removeEventListener('keydown', handleEscKeyClose)
-  // }, [])
-
-
-
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true)
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true)
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true)
@@ -171,12 +157,8 @@ function App() {
             cardToDelete={cardToDelete}
             buttonText={deleteCardConfirmationBtnText}
           />
-          <ImagePopup
-            card={selectedCard}
-            isOpen={isImagePopupOpen}
-            onClose={closeAllPopups} />
+          <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
         </div>
-
       </div>
     </CurrentUserContext.Provider>
   )
