@@ -11,10 +11,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
 
   function handleSubmit(evt) {
     evt.preventDefault()
-    onAddPlace({
-      place: values.current,
-      url: values.current,
-    })
+    onAddPlace(values)
   }
 
   return (

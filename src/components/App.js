@@ -108,7 +108,7 @@ function App() {
   function handleAddPlaceSubmit(newCardData) {
     setAddPlaceBtnText('Добавляем...')
     api
-      .postNewCard({ name: newCardData.place.value, link: newCardData.url.value })
+      .postNewCard(newCardData)
       .then((res) => {
         setCards([res, ...cards])
       })
