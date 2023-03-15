@@ -78,8 +78,10 @@ function App() {
     setDeleteCardConfirmationBtnText('Удаляем...')
     api
       .deleteCard(targetCard.id)
-      .then(() => setCards(cards.filter((card) => card._id !== targetCard.id)))
-      .then(closeAllPopups)
+      .then(() => {
+        setCards(cards.filter((card) => card._id !== targetCard.id))
+        closeAllPopups()
+      })
       .catch((err) => console.log(err))
   }
 
@@ -89,8 +91,8 @@ function App() {
       .setUserInfo(userData)
       .then((res) => {
         setCurrentUser(res)
+        closeAllPopups()
       })
-      .then(closeAllPopups)
       .catch((err) => console.log(err))
   }
 
@@ -100,8 +102,8 @@ function App() {
       .setUserAvatar(data.avatar.value)
       .then((res) => {
         setCurrentUser(res)
+        closeAllPopups()
       })
-      .then(closeAllPopups)
       .catch((err) => console.log(err))
   }
 
@@ -111,8 +113,8 @@ function App() {
       .postNewCard(newCardData)
       .then((res) => {
         setCards([res, ...cards])
+        closeAllPopups()
       })
-      .then(closeAllPopups)
       .catch((err) => console.log(err))
   }
 
