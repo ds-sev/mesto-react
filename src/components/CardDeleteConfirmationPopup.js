@@ -1,10 +1,13 @@
 import PopupWithForm from './PopupWithForm'
+import useValidation from '../hooks/useValidation'
 
 function CardDeleteConfirmationPopup({ isOpen, onClose, onCardDelete, cardToDelete, buttonText }) {
   function handleSubmit(evt) {
     evt.preventDefault()
     onCardDelete(cardToDelete)
   }
+
+  const { isFormValid } = useValidation()
 
   function handleEscKeyClose(evt) {
     if (evt.code === 'Escape') {
@@ -22,6 +25,7 @@ function CardDeleteConfirmationPopup({ isOpen, onClose, onCardDelete, cardToDele
       onSubmit={handleSubmit}
       cardToDelete={cardToDelete}
       onKeyDown={handleEscKeyClose}
+      isValid={isFormValid}
     />
   )
 }

@@ -99,7 +99,7 @@ function App() {
   function handleUpdateAvatar(data) {
     setEditProfileBtnText('Сохраняем...')
     api
-      .setUserAvatar(data.avatar.value)
+      .setUserAvatar(data.link)
       .then((res) => {
         setCurrentUser(res)
         closeAllPopups()

@@ -3,7 +3,7 @@ import { useState } from 'react'
 function useValidation() {
   const [values, setValues] = useState({})
   const [errors, setErrors] = useState({})
-  const [isFormValid, setIsFormValid] = useState(false)
+  const [isFormValid, setIsFormValid] = useState(true)
 
   const onChange = (evt) => {
     const { name, value } = evt.target
