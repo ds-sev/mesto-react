@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-function PopupWithForm({ title, name, isOpen, children, onClose, onSubmit, buttonText }) {
+function PopupWithForm({ title, name, isOpen, children, onClose, onSubmit, buttonText, isValid }) {
   function onOverlayClick(evt) {
     if (evt.target === evt.currentTarget) {
       onClose()
@@ -13,6 +13,7 @@ function PopupWithForm({ title, name, isOpen, children, onClose, onSubmit, butto
         onClose()
       }
     }
+
     if (isOpen) {
       document.addEventListener('keydown', handleEscKeyClose)
     }
@@ -20,12 +21,9 @@ function PopupWithForm({ title, name, isOpen, children, onClose, onSubmit, butto
   })
 
   return (
-    <div
-      className={`popup popup-${name} ${isOpen
-        ? 'popup_opened'
-        : ''}`}
-      onClick={onOverlayClick}
-    >
+    <div className={`popup popup-${name} ${isOpen
+      ? 'popup_opened'
+      : ''}`} onClick={onOverlayClick}>
       <div className="popup__container">
         <form onSubmit={onSubmit} className="edit-form" method="post" name={`${name}`}>
           <button
@@ -37,7 +35,12 @@ function PopupWithForm({ title, name, isOpen, children, onClose, onSubmit, butto
           <h3 className="edit-form__title">{title}</h3>
           <fieldset className="edit-form__fields">
             {children}
-            <button className="edit-form__button-save button_submit button" type="submit">
+            <button
+              className={`edit-form__button-save button_submit button ${
+                !isValid && 'button_inactive'
+              }`}
+              type="submit"
+            >
               {buttonText}
             </button>
           </fieldset>

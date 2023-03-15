@@ -1,7 +1,14 @@
 import PopupWithForm from './PopupWithForm'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import useValidation from '../hooks/useValidation'
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, buttonText }) {
+  const { isFormValid, setIsFormValid } = useValidation()
+
+  useEffect(() => {
+    setIsFormValid(true)
+  }, [])
+
   const newAvatarRef = useRef()
 
   function handleSubmit(evt) {
@@ -19,6 +26,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, buttonText }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isValid={isFormValid}
     >
       <label>
         <input

@@ -5,10 +5,12 @@ import useValidation from '../hooks/useValidation'
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
   const currentUser = useContext(CurrentUserContext)
-  const { values, errors, onChange, resetValidation } = useValidation()
+  const { values, errors, onChange, resetValidation, isFormValid, setIsFormValid } =
+    useValidation()
 
   useEffect(() => {
     resetValidation(currentUser)
+    setIsFormValid(true)
   }, [currentUser, isOpen])
 
   function handleSubmit(evt) {
@@ -28,6 +30,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText={buttonText}
+      isValid={isFormValid}
     >
       <label>
         <input
