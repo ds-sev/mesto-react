@@ -3,7 +3,7 @@ import Popup from './Popup'
 function ImagePopup({ card, isOpen, onClose }) {
 
   return (
-    <Popup name="image-view" isOpen={isOpen} onClose={onClose}>
+    <Popup name="image-view" isOpen={isOpen} onClose={onClose} theme="popup_theme_dark">
       <div className="image-view">
         <figure className="figure">
           <img className="image-view__item" alt={card.title} src={card.link} />

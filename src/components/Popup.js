@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-function Popup({ name, isOpen, onClose, children }) {
+function Popup({ name, isOpen, onClose, children, theme }) {
   function onOverlayClick(evt) {
     if (evt.target === evt.currentTarget) {
       onClose()
@@ -21,7 +21,7 @@ function Popup({ name, isOpen, onClose, children }) {
   })
 
   return (
-    <div className={`popup popup-${name} ${isOpen
+    <div className={`popup popup-${name} ${theme} ${isOpen
       ? 'popup_opened'
       : ''}`} onClick={onOverlayClick}>
       {children}

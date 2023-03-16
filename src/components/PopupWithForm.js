@@ -2,7 +2,7 @@ import Popup from './Popup'
 
 function PopupWithForm({ title, name, isOpen, children, onClose, onSubmit, buttonText, isValid }) {
   return (
-    <Popup name={name} isOpen={isOpen} onClose={onClose}>
+    <Popup name={name} isOpen={isOpen} onClose={onClose} >
       <div className="popup__container">
         <form onSubmit={onSubmit} className="edit-form" method="post" name={`${name}`}>
           <button
