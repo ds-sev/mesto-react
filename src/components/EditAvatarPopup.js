@@ -1,21 +1,19 @@
 import PopupWithForm from './PopupWithForm'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import useValidation from '../hooks/useValidation'
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, buttonText }) {
-  const { isFormValid, setIsFormValid } = useValidation()
+  const { values, errors, onChange, resetValidation, isFormValid, setIsFormValid } =
+    useValidation()
 
   useEffect(() => {
-    setIsFormValid(true)
-  }, [])
-
-  const newAvatarRef = useRef()
+    resetValidation()
+    setIsFormValid(false)
+  }, [isOpen])
 
   function handleSubmit(evt) {
     evt.preventDefault()
-    onUpdateAvatar({
-      avatar: newAvatarRef.current,
-    })
+    onUpdateAvatar(values)
   }
 
   return (
@@ -30,14 +28,15 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, buttonText }) {
     >
       <label>
         <input
-          ref={newAvatarRef}
+          value={values.link || ''}
+          onChange={onChange}
           type="url"
           className="edit-form__field edit-form__field_get_link"
           placeholder="Ссылка на изображение"
           name="link"
           required
         />
-        <span className="edit-form__field-error avatar-link-input-error" />
+        <span className="edit-form__field-error avatar-link-input-error">{errors.link}</span>
       </label>
     </PopupWithForm>
   )
