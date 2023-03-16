@@ -1,32 +1,9 @@
-import { useEffect } from 'react'
+import Popup from './Popup'
 
 function ImagePopup({ card, isOpen, onClose }) {
-  useEffect(() => {
-    function handleEscKeyClose(evt) {
-      if (evt.code === 'Escape') {
-        onClose()
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscKeyClose)
-    }
-    return () => document.removeEventListener('keydown', handleEscKeyClose)
-  })
-
-  function onOverlayClick(evt) {
-    if (evt.target === evt.currentTarget) {
-      onClose()
-    }
-  }
 
   return (
-    <div
-      className={`popup popup-image-view popup_theme_dark ${card.link
-        ? 'popup_opened'
-        : ''}`}
-      onClick={onOverlayClick}
-    >
+    <Popup name="image-view" isOpen={isOpen} onClose={onClose}>
       <div className="image-view">
         <figure className="figure">
           <img className="image-view__item" alt={card.title} src={card.link} />
@@ -39,7 +16,7 @@ function ImagePopup({ card, isOpen, onClose }) {
           onClick={onClose}
         />
       </div>
-    </div>
+    </Popup>
   )
 }
 

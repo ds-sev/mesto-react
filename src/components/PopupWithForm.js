@@ -1,29 +1,8 @@
-import { useEffect } from 'react'
+import Popup from './Popup'
 
 function PopupWithForm({ title, name, isOpen, children, onClose, onSubmit, buttonText, isValid }) {
-  function onOverlayClick(evt) {
-    if (evt.target === evt.currentTarget) {
-      onClose()
-    }
-  }
-
-  useEffect(() => {
-    function handleEscKeyClose(evt) {
-      if (evt.code === 'Escape') {
-        onClose()
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscKeyClose)
-    }
-    return () => document.removeEventListener('keydown', handleEscKeyClose)
-  })
-
   return (
-    <div className={`popup popup-${name} ${isOpen
-      ? 'popup_opened'
-      : ''}`} onClick={onOverlayClick}>
+    <Popup name={name} isOpen={isOpen} onClose={onClose}>
       <div className="popup__container">
         <form onSubmit={onSubmit} className="edit-form" method="post" name={`${name}`}>
           <button
@@ -46,7 +25,7 @@ function PopupWithForm({ title, name, isOpen, children, onClose, onSubmit, butto
           </fieldset>
         </form>
       </div>
-    </div>
+    </Popup>
   )
 }
 
